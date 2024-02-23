@@ -4,7 +4,7 @@ pound_kilo_ratio = 0.45359237
 feet_meters_ratio = 0.3048
 inch_meters_ratio = 0.0254
 
-average_emissions_per_capita = 11.7 * 1000 #kgCO2e/year
+average_emissions_per_capita = 4.7 * 1000 #kgCO2e/year
 
 def calculate_co2_captured(diameter, height, tree_age):
     # Step 1: Calculate green weight above ground
@@ -83,10 +83,10 @@ with col1:
     metrics = {}
     columns = {}
     create_input("diameter", "Enter the diameter of the tree (in metres):", 0.4, 0.0, 1.0, 0.01)
-    create_input("height", "Enter the height of the tree (in metres):", 20.0, 0.0, 100.0, 0.1)
-    create_input("tree_age", "Enter the age of the tree (in years):", 200, 0, 1000, 1)
-    create_input("num_tiny_forests", "Enter the number of tiny forests:", 10, 0, 200, 1)
-    create_input("num_employees", "Enter the number of employees:", 10, 0, 10000, 1)
+    create_input("height", "Enter the height of the tree (in metres):", 15.0, 0.0, 50.0, 0.1)
+    create_input("tree_age", "Enter the age of the tree (in years):", 10, 0, 100, 1)
+    create_input("num_tiny_forests", "Enter the number of tiny forests (each has 600 trees):", 10, 0, 1000, 1)
+    create_input("num_employees", "Enter the number of employees:", 100, 0, 1000, 1)
     
 
 if metrics["tree_age"] == 0:
@@ -105,7 +105,7 @@ else:
         'Values': [format_large_number(co2_captured) + ' tCO2/year', format_large_number(employee_emissions) + ' tCO2e/year', "{:.2f}%".format(proportion_captured_percentage)]
     }
     # Create a bar chart to compare CO2 captured and employee emissions
-    chart_data = {'Tiny forests': co2_captured, 'Employees': employee_emissions}
+    chart_data = {'Emissions captured': co2_captured, 'Emissions created': employee_emissions}
 
     with col2:
         table_data = st.dataframe(table_data, hide_index=True)
@@ -118,5 +118,5 @@ else:
 with open("README.md", "r") as file:
     explanation = file.read()
 
-with st.expander("See details of the project"):
+with st.expander("See details of the project and calculation methodology"):
     st.markdown(explanation)

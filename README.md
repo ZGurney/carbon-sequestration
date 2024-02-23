@@ -21,11 +21,11 @@ Developed by [Zinzan Gurney](mailto:z.gurney@reply.com) . Updated on 23 February
 	- `co2_carbon_ratio = co2_weight / carbon_atomic_weight`
 5. CO2 captured per year: `annual_co2_captured = co2_captured / tree_age`
 6. Calculate CO2 captured per year for one tiny forest: `tiny_forest_co2_captured = 600 * annual_co2_captured`
-	- 600 trees in one tiny forest
+	- [600 trees in one tiny forest](https://earthwatch.org.uk/program/tiny-forest/)
 7. Calculate CO2 captured per year for all tiny forests:
 `all_tiny_forests_co2_captured = num_tiny_forests * tiny_forest_co2_captured`
 
 ## Calculating employee footprint
 - Total employee emissions: `employee_emissions = num_employees * average_emissions_per_capita`
-- 11.7 tonnes of CO2e emissions per UK resident: `average_emissions_per_capita = 11.7` based on  [article](https://www.openaccessgovernment.org/the-average-british-carbon-footprint-is-five-times-over-paris-agreement-recommendations/152669/#:~:text=Recent%20research%20finds%20that%20an,equivalent%20(tCO2e)%20per%20year.)
+- 4.7 tonnes of CO2e emissions per UK resident: `average_emissions_per_capita = 4.7` in 2022 based on [Statista](https://www.statista.com/statistics/1299198/co2-emissions-per-capita-united-kingdom/)
 	- Note: calculating emissions of a firm would best be done using the [GHG protocol framework](https://ghgprotocol.org)
