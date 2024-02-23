@@ -43,7 +43,7 @@ def calculate_co2_captured(diameter, height, tree_age):
     tiny_forest_co2_captured = 600 * annual_co2_captured
 
     # Step 8: Calculate CO2 captured per year for all tiny forests
-    all_tiny_forests_co2_captured = num_tiny_forests * tiny_forest_co2_captured
+    all_tiny_forests_co2_captured = metrics["num_tiny_forests"] * tiny_forest_co2_captured
 
     return all_tiny_forests_co2_captured
 
@@ -60,21 +60,42 @@ st.title("Tiny Forests Carbon Capture Calculator")
 
 col1, col2 = st.columns(2, gap="large")
 
+st.markdown("""
+<style>
+    button.step-up {display: none;}
+    button.step-down {display: none;}
+    div[data-baseweb] {border-radius: 4px;}
+</style>""",
+unsafe_allow_html=True)
+
+def update(name):
+    st.session_state[name + "_slider"] = st.session_state[name + "_number"]
+
+def create_input(name, text, initial_value, min_value, max_value, step):
+    st.write(text)
+    columns[name + "_number"], columns[name + "_slider"] = st.columns([0.3, 0.7])
+    with columns[name + "_number"]:
+        st.number_input("Number", label_visibility="collapsed", value=initial_value, min_value=min_value, max_value=max_value, step=step, key=name+"_number", args=(name,), on_change=update)
+    with columns[name + "_slider"]:
+        metrics[name] = st.slider("Slider", label_visibility="collapsed", value=initial_value, min_value=min_value, max_value=max_value, step=step, key=name+"_slider")
+
 with col1:
-    diameter = st.slider("Enter the diameter of the tree (in metres):", min_value=0.0, max_value=1.0, value=0.4)
-    height = st.slider("Enter the height of the tree (in metres):", min_value=0.0, max_value=100.0, value=20.0)
-    tree_age = st.slider("Enter the age of the tree (in years):", min_value=0, max_value=1000, value=200, step=1)
-    num_tiny_forests = st.slider("Enter the number of tiny forests:", min_value=0, max_value=200, value=10, step=1)
-    num_employees = st.slider("Enter the number of employees:", min_value=0, max_value=10000, value=10, step=1)
+    metrics = {}
+    columns = {}
+    create_input("diameter", "Enter the diameter of the tree (in metres):", 0.4, 0.0, 1.0, 0.01)
+    create_input("height", "Enter the height of the tree (in metres):", 20.0, 0.0, 100.0, 0.1)
+    create_input("tree_age", "Enter the age of the tree (in years):", 200, 0, 1000, 1)
+    create_input("num_tiny_forests", "Enter the number of tiny forests:", 10, 0, 200, 1)
+    create_input("num_employees", "Enter the number of employees:", 10, 0, 10000, 1)
     
 
-if tree_age == 0:
+if metrics["tree_age"] == 0:
     # Display a warning if the tree age is zero
     with col2:
         st.warning("Please enter a non-zero age for the tree.")
 else:
-    co2_captured = calculate_co2_captured(diameter, height, tree_age)
-    employee_emissions = calculate_employee_emissions(num_employees, average_emissions_per_capita)
+    co2_captured = calculate_co2_captured(metrics["diameter"], metrics["height"], metrics["tree_age"])
+    employee_emissions = calculate_employee_emissions(metrics["num_employees"], average_emissions_per_capita)
     proportion_captured = co2_captured / employee_emissions
     proportion_captured_percentage = proportion_captured * 100
 

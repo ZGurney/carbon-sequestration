@@ -20,6 +20,10 @@ Developed by [Zinzan Gurney](mailto:z.gurney@reply.com) . Updated on 23 February
 	- `co2_weight = carbon_atomic_weight + 2*oxygen_atomic_weight`
 	- `co2_carbon_ratio = co2_weight / carbon_atomic_weight`
 5. CO2 captured per year: `annual_co2_captured = co2_captured / tree_age`
+6. Calculate CO2 captured per year for one tiny forest: `tiny_forest_co2_captured = 600 * annual_co2_captured`
+	- 600 trees in one tiny forest
+7. Calculate CO2 captured per year for all tiny forests:
+`all_tiny_forests_co2_captured = num_tiny_forests * tiny_forest_co2_captured`
 
 ## Calculating employee footprint
 - Total employee emissions: `employee_emissions = num_employees * average_emissions_per_capita`
