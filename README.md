@@ -1,6 +1,6 @@
 # Tiny forests project
 
-Developed by [Zinzan Gurney](mailto:z.gurney@reply.com) . Updated on 23 February 2024. Code in [GitHub repository](https://github.com/ZGurney/carbon-sequestration). Methodology described below:
+Developed by [AIM Reply](https://www.reply.com/aim-reply/en/) (Zinzan Gurney). Updated on 20 March 2024. Code in [GitHub repository](https://github.com/ZGurney/carbon-sequestration). Methodology described below:
 
 ## Calculating carbon sequestered by tiny forests:
 

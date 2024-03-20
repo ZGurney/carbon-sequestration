@@ -82,7 +82,7 @@ def create_input(name, text, initial_value, min_value, max_value, step):
 with col1:
     metrics = {}
     columns = {}
-    create_input("diameter", "Enter the diameter of the tree (in metres):", 0.4, 0.0, 1.0, 0.01)
+    create_input("diameter", "Enter the diameter of the tree (in centimetres):", 40, 0, 100, 1)
     create_input("height", "Enter the height of the tree (in metres):", 15.0, 0.0, 50.0, 0.1)
     create_input("tree_age", "Enter the age of the tree (in years):", 10, 0, 100, 1)
     create_input("num_tiny_forests", "Enter the number of tiny forests (each has 600 trees):", 10, 0, 1000, 1)
@@ -94,7 +94,7 @@ if metrics["tree_age"] == 0:
     with col2:
         st.warning("Please enter a non-zero age for the tree.")
 else:
-    co2_captured = calculate_co2_captured(metrics["diameter"], metrics["height"], metrics["tree_age"])
+    co2_captured = calculate_co2_captured(metrics["diameter"]/100, metrics["height"], metrics["tree_age"])
     employee_emissions = calculate_employee_emissions(metrics["num_employees"], average_emissions_per_capita)
     proportion_captured = co2_captured / employee_emissions
     proportion_captured_percentage = proportion_captured * 100
