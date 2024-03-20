@@ -56,6 +56,7 @@ def format_large_number(number):
     return "{:,.0f}".format(number)
 
 st.set_page_config(layout="wide", page_title="Tiny Forests Carbon Capture Calculator")
+st.image(["logo.png"], output_format="png", width=300)
 st.title("Tiny Forests Carbon Capture Calculator")
 
 col1, col2 = st.columns(2, gap="large")
@@ -84,7 +85,7 @@ with col1:
     columns = {}
     create_input("diameter", "Enter the diameter of the tree (in centimetres):", 40, 0, 100, 1)
     create_input("height", "Enter the height of the tree (in metres):", 15.0, 0.0, 50.0, 0.1)
-    create_input("tree_age", "Enter the age of the tree (in years):", 10, 0, 100, 1)
+    create_input("tree_age", "Enter the age of the tree (in years):", 10.0, 0.0, 100.0, 1.0)
     create_input("num_tiny_forests", "Enter the number of tiny forests (each has 600 trees):", 10, 0, 1000, 1)
     create_input("num_employees", "Enter the number of employees:", 100, 0, 1000, 1)
     
